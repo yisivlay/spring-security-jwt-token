@@ -23,15 +23,10 @@
 hs_err_pid*
 replay_pid*
 
+# Gradle
 .gradle
 out
-build/
-gradle/wrapper/caches
-gradle/wrapper/.tmp
-gradle/wrapper/daemon
-gradle/wrapper/jdks
-gradle/wrapper/native
-gradle/wrapper/wrapper
+build
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
