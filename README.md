@@ -1,2 +1,2 @@
 # spring-security-jwt-token
-Spring Security JWT Token login and registration with email validation on Spring Boot 3.4.5 and Java 17
+Spring Security JWT Token login and registration with email validation on Spring Boot 3.2.5 and Java 17
