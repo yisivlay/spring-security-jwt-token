@@ -54,17 +54,9 @@ public class Role {
     @JsonIgnore
     private List<User> user;
 
-    @CreatedBy
-    @Column(nullable = false, updatable = false)
-    private Long createdBy;
-
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdDate;
-
-    @LastModifiedBy
-    @Column(insertable = false)
-    private Long LastModifiedBy;
 
     @LastModifiedDate
     @Column(insertable = false)

@@ -75,6 +75,10 @@ public class User implements UserDetails, Principal {
                 .collect(Collectors.toList());
     }
 
+    public String getFullname() {
+        return this.firstname + " " + this.lastname;
+    }
+
     @Override
     public String getPassword() {
         return this.password;
