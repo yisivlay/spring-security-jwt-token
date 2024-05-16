@@ -15,16 +15,19 @@
  */
 package com.dev4sep.base.user;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
+import com.dev4sep.base.common.PageResponse;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @author YISivlay
  */
-public interface TokenRepository extends JpaRepository<Token, Long> {
+public interface UserService {
 
-    Optional<Token> findByToken(String token);
+    PageResponse<UserResponse> findAllUsers(int page, int size);
 
-    Optional<Token> findByUserId(Long userId);
+    UserResponse findById(Long id);
+
+    void deleteById(Long id);
+
+    ResponseEntity<?> updateUser(Long id, UserRequest request);
 }

@@ -15,7 +15,11 @@
  */
 package com.dev4sep.base.user;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.security.core.Authentication;
 
 import java.util.Optional;
 
@@ -25,5 +29,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
+
+    @Query(value = "SELECT * FROM tbl_user u WHERE u.enabled = true", nativeQuery = true)
+    Page<User> findAllUsers(Pageable pageable);
 
 }

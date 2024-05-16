@@ -13,11 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dev4sep.base.role;
+package com.dev4sep.base.common;
 
-import com.dev4sep.base.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,7 +28,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * @author YISivlay
@@ -39,22 +35,15 @@ import java.util.List;
 @Getter
 @Setter
 @SuperBuilder
-@NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Entity
-@Table(name = "tbl_role")
+@NoArgsConstructor
+@MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class Role {
+public class BaseEntity {
 
     @Id
     @GeneratedValue
     private Integer id;
-    @Column(unique = true)
-    private String name;
-    @ManyToMany(mappedBy = "roles")
-    @JsonIgnore
-    private List<User> user;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -63,5 +52,13 @@ public class Role {
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
+
+    @CreatedBy
+    @Column(nullable = false, updatable = false)
+    private Integer createdBy;
+
+    @LastModifiedBy
+    @Column(insertable = false)
+    private Integer lastModifiedBy;
 
 }

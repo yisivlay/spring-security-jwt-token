@@ -15,16 +15,25 @@
  */
 package com.dev4sep.base.user;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 /**
  * @author YISivlay
  */
-public interface TokenRepository extends JpaRepository<Token, Long> {
+@Service
+public class UserMapper {
 
-    Optional<Token> findByToken(String token);
+    public UserResponse toUserResponse(User user) {
+        return UserResponse.builder()
+                .id(user.getId())
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .dateOfBirth(user.getDateOfBirth())
+                .email(user.getEmail())
+                .accountLocked(user.isAccountLocked())
+                .enabled(user.isEnabled())
+                .roles(user.getRoles())
+                .build();
+    }
 
-    Optional<Token> findByUserId(Long userId);
 }

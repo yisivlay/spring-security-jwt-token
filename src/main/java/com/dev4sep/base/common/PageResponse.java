@@ -13,18 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dev4sep.base.user;
+package com.dev4sep.base.common;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import lombok.*;
 
-import java.util.Optional;
+import java.util.List;
 
 /**
  * @author YISivlay
  */
-public interface TokenRepository extends JpaRepository<Token, Long> {
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class PageResponse<T> {
 
-    Optional<Token> findByToken(String token);
+    private List<T> data;
+    private int number;
+    private int size;
+    private long totalElements;
+    private int totalPages;
+    private boolean first;
+    private boolean last;
 
-    Optional<Token> findByUserId(Long userId);
 }

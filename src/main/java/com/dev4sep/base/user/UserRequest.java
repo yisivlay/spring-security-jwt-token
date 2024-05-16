@@ -15,16 +15,32 @@
  */
 package com.dev4sep.base.user;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.dev4sep.base.role.Role;
+import jakarta.validation.constraints.Size;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author YISivlay
  */
-public interface TokenRepository extends JpaRepository<Token, Long> {
+@Getter
+@Setter
+@Builder
+public class UserRequest {
 
-    Optional<Token> findByToken(String token);
+    private String firstname;
+    private String lastname;
+    private LocalDate dateOfBirth;
+    private String email;
 
-    Optional<Token> findByUserId(Long userId);
+    @Size(min = 8, message = "Password should be 8 characters long minimum")
+    private String password;
+    private boolean accountLocked;
+    private boolean enabled;
+    private List<Role> roles;
+
 }
